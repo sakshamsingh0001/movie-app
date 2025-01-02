@@ -1,0 +1,37 @@
+<section>
+    <!-- Navbar -->
+    <nav class="navbar nav-container" id="nav">
+      <a routerLink="/" class="logo">
+        <img class="movie-logo homepage" src="assets/images/movie-logo.png" alt="movie-logo" />
+      </a>
+      <input type="checkbox" id="toggler" />
+      <label class="top-bars" for="toggler"><i class="ri-menu-line"></i></label>
+  
+      <div class="menu">
+        <ul class="list">
+          <li><a routerLink="/" id="home">Home</a></li>
+          <li><a href="#footer">About</a></li>
+          <li>
+            <input type="checkbox" id="toggle" class="dark-theme" [checked]="isDarkTheme" (change)="toggleTheme()" />
+            <label for="toggle" class="button"></label>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  
+    <!-- Search bar -->
+    <header>
+      <form id="form" class="form" (ngSubmit)="onSearch()">
+        <img src="assets/images/search-icon.svg" alt="search-icon" id="search-btn" />
+        <input
+          type="text"
+          placeholder="Search"
+          id="search"
+          class="search"
+          [(ngModel)]="searchQuery"
+          name="search"
+        />
+      </form>
+    </header>
+  </section>
+  
