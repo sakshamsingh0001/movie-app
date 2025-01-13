@@ -8,7 +8,6 @@ import { API_CONFIG } from '../services/api/api-config';
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent {
-  // openOverlay(_t33: any) {}
   isOverlayVisible: boolean = false; // Flag to toggle overlay visibility
   selectedMovie: any; // Variable to store the selected movie details
   movies: any[] = [];
@@ -17,6 +16,17 @@ export class MoviesComponent {
   lastUrl: string = '';
   isLoading: boolean = false;
   selectedGenre: number[] = [];
+  types = [
+    { name: 'HOME' },
+    { name: 'MOVIES' },
+    { name: 'GENRE' },
+    { name: 'YEAR' },
+    { name: 'OTT' },
+    { name: 'WEB SERIES' },
+    { name: 'TV SERIES' },
+  ];
+
+
   genres = [
     {
       id: 28,
@@ -119,11 +129,6 @@ export class MoviesComponent {
     // this.fetchMovies();
   }
 
-
-  getStars(rating: number): number[] {
-    // Assuming the rating is out of 10, so we divide by 2 to get the number of stars out of 5
-    return new Array(Math.round(rating / 2)); // Creates an array with the number of stars
-  }
 
   fetchMovies(url: string): void {
     this.isLoading = true;

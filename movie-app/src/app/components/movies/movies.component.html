@@ -3,12 +3,13 @@
     <label class="bars" for="bars-toggler"><i class="ri-menu-line"></i>Genres</label>
 
     <!-- Genre tags -->
-    <div id="tags">
+    <!-- <div id="tags">
         <div *ngFor="let genre of genres" class="tag" [class.selected]="selectedGenre.includes(genre.id)"
             (click)="toggleGenreSelection(genre.id)">
             {{ genre.name }}
         </div>
-    </div>
+    </div> -->
+
 </div>
 
 <!-- Overlay for displaying movie details -->
@@ -28,6 +29,9 @@
         <span>Rating: {{ movie.vote_average }}</span>
       </div>
     </div> -->
+
+<!-- OUTLAY/ OVERLAY DIV -->
+
 <div id="myNav" class="overlay" *ngIf="isOverlayVisible">
     <a href="javascript:void(0)" class="close-btn" (click)="closeOverlay()">
         <i class="ri-close-line"></i>

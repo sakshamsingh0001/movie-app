@@ -1,37 +1,52 @@
 <section>
-    <!-- Navbar -->
-    <nav class="navbar nav-container" id="nav">
-      <a routerLink="/" class="logo">
-        <img class="movie-logo homepage" src="assets/images/movie-logo.png" alt="movie-logo" />
-      </a>
-      <input type="checkbox" id="toggler" />
-      <label class="top-bars" for="toggler"><i class="ri-menu-line"></i></label>
-  
-      <div class="menu">
-        <ul class="list">
-          <li><a routerLink="/" id="home">Home</a></li>
-          <li><a href="#footer">About</a></li>
-          <li>
-            <input type="checkbox" id="toggle" class="dark-theme" [checked]="isDarkTheme" (change)="toggleTheme()" />
-            <label for="toggle" class="button"></label>
-          </li>
-        </ul>
+  <!-- Navbar -->
+  <nav class="navbar nav-container" id="nav">
+    <a routerLink="/" class="logo">
+      <img class="movie-logo homepage" src="assets/images/movie-logo.png" alt="movie-logo" />
+    </a>
+    <input type="checkbox" id="toggler" />
+    <label class="top-bars" for="toggler"><i class="ri-menu-line"></i></label>
+
+    <div class="menu">
+      <ul class="list">
+        <li><a routerLink="/" id="home">Home</a></li>
+        <li><a href="#footer">About</a></li>
+        <li>
+          <input type="checkbox" id="toggle" class="dark-theme" [checked]="isDarkTheme" (change)="toggleTheme()" />
+          <label for="toggle" class="button"></label>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Search bar -->
+  <header>
+    <form id="form" class="form" (ngSubmit)="onSearch()">
+      <img src="assets/images/search-icon.svg" alt="search-icon" id="search-btn" />
+      <input type="text" placeholder="Search" id="search" class="search" [(ngModel)]="searchQuery" name="search" />
+    </form>
+    <div id="tags">
+      <div *ngFor=" let type of types" class="tag">
+        {{type.name}}
       </div>
-    </nav>
-  
-    <!-- Search bar -->
-    <header>
-      <form id="form" class="form" (ngSubmit)="onSearch()">
-        <img src="assets/images/search-icon.svg" alt="search-icon" id="search-btn" />
-        <input
-          type="text"
-          placeholder="Search"
-          id="search"
-          class="search"
-          [(ngModel)]="searchQuery"
-          name="search"
-        />
-      </form>
-    </header>
-  </section>
-  
+    </div>
+    <!-- <div id="tabs">
+      <ul>
+        <li 
+          *ngFor="let type of types" class="tag"
+          (click)="selectTab(type.name)"
+          [class.active]="type.name === selectedTab">
+          {{ type.name }}
+          <div 
+            class="dropdown-menu" 
+            *ngIf="type.name === selectedTab && type.dropdown">
+            <ul>
+              <li *ngFor="let item of type.dropdown">{{ item }}</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div> -->
+    
+  </header>
+</section>

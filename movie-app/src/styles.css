@@ -168,6 +168,9 @@ header {
   border: none;
 }
 
+
+ 
+
 .no-results {
   color: var(--secondary-color);
 }
@@ -358,8 +361,8 @@ main,
 }
 
 .overlay .close-btn:hover {
-  background-color: #fff;
-  color: #181818;
+  background-color: orange;
+  color: red;
 }
 
 .overlay .close-btn i {

@@ -6,7 +6,7 @@
     </div>
 
     <div class="email">
-      <a class="footer__btn" href="mailto:example@gmail.com">Email Us</a>
+      <a class="footer__btn" (click)="showModal = true" style="cursor: pointer;">Email Us</a>
     </div>
   </div>
 
@@ -21,13 +21,13 @@
         </li>
 
         <li>
-          <a class="footer-menu-links" href="https://www.github.com/?hl=en" title="Github" rel="noopener" target="_blank"><i
-              class="fa fa-github"></i>Github</a>
+          <a class="footer-menu-links" href="https://www.github.com/?hl=en" title="Github" rel="noopener"
+            target="_blank"><i class="fa fa-github"></i>Github</a>
         </li>
 
         <li>
-          <a class="footer-menu-links" href="https://www.linkedin.com/" title="LinkedIn" rel="noopener" target="_blank"><i
-              class="fa fa-linkedin"></i>LinkedIn</a>
+          <a class="footer-menu-links" href="https://www.linkedin.com/" title="LinkedIn" rel="noopener"
+            target="_blank"><i class="fa fa-linkedin"></i>LinkedIn</a>
         </li>
       </ul>
     </li>
@@ -59,8 +59,7 @@
       <ul class="footer_nav_ul">
 
         <li>
-          <a class="footer-menu-links" href="https://v15.angular.io/docs" target="_blank"
-            rel="noopener">Angular v15</a>
+          <a class="footer-menu-links" href="https://v15.angular.io/docs" target="_blank" rel="noopener">Angular v15</a>
         </li>
         <li>
           <a class="footer-menu-links" href="https://www.typescriptlang.org/" target="_blank"
@@ -112,3 +111,39 @@
     <div class="legal__links"></div>
   </div>
 </footer>
+
+
+<!-- Email Modal -->
+
+<!-- <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="emailModalLabel">Send Us an Email</h5>
+      </div>
+     </div>
+   </div>
+</div> -->
+
+<div class="custom-modal" *ngIf="showModal">
+  <div class="custom-modal-backdrop" (click)="closeModal()"></div>
+  <div class="custom-modal-content">
+    <div class="custom-modal-header">
+      <h3>Send Us an Email</h3>
+      <button class="close-btn" (click)="closeModal()">&#10005;</button>
+    </div>
+    <div class="custom-modal-body">
+      <form [formGroup]="emailForm" (ngSubmit)="submitEmail()">
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter your email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" formControlName="message" class="form-control" rows="4" placeholder="Write your message here" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn" [disabled]="emailForm.invalid">Send Email</button>
+      </form>
+    </div>
+  </div>
+</div>

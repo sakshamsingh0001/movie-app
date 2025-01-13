@@ -9,6 +9,7 @@ export class HeaderComponent {
 
   isDarkTheme: boolean = false;
   searchQuery: any;
+  showDropdown: boolean = true;
 
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme; // Toggle the theme
@@ -19,7 +20,46 @@ export class HeaderComponent {
     }
   }
 
-  onSearch() { }
+//   types = [
+//     { name: 'HOME'},
+//     { name : 'MOVIES'}, 
+//     {name : 'GENRE'},
+//     {name : 'YEAR'},
+//     {name : 'OTT'},
+//     {name : 'WEB SERIES'},
+//     {name : 'TV SERIES'},
+//  ];
 
+//  showValue(){
+//      if (this.types == "GENRE")
+//  }
+
+// types = [
+//   { name: 'HOME', dropdown: null },
+//   { name: 'MOVIES', dropdown: null },
+//   { name: 'GENRE', dropdown: ['Action', 'Comedy', 'Drama'] },
+//   { name: 'YEAR', dropdown: ['2023', '2022', '2021'] },
+//   { name: 'OTT', dropdown: null },
+//   { name: 'WEB SERIES', dropdown: null },
+//   { name: 'TV SERIES', dropdown: null }
+// ];
+
+types = [
+  { name: 'HOME', dropdown: null },
+  { name: 'MOVIES', dropdown: null },
+  { name: 'GENRE', dropdown: ['Action', 'Comedy', 'Drama'] },
+  { name: 'YEAR', dropdown: ['2023', '2022', '2021'] },
+  { name: 'OTT', dropdown: null },
+  { name: 'WEB SERIES', dropdown: null },
+  { name: 'TV SERIES', dropdown: null }
+];
+
+selectedTab: string | null = null;
+
+selectTab(tabName: string) {
+  this.selectedTab = tabName;
+}
+
+  onSearch() { }
 
 }
