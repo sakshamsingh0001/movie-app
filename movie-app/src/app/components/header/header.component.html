@@ -21,10 +21,14 @@
 
   <!-- Search bar -->
   <header>
-    <form id="form" class="form" (ngSubmit)="onSearch()">
+    <form id="form" class="form" (ngSubmit)="onSearch(searchQuery)">
       <img src="assets/images/search-icon.svg" alt="search-icon" id="search-btn" />
       <input type="text" placeholder="Search" id="search" class="search" [(ngModel)]="searchQuery" name="search" />
     </form>
+    <!-- <form (ngSubmit)="onSearch(searchQuery)">
+      <input type="text" [(ngModel)]="searchQuery" name="query" placeholder="Search movies" />
+      <button type="submit">Search</button>
+    </form> -->
     <div id="tags">
       <div *ngFor=" let type of types" class="tag" (click)="type.click ? type.click() : null">
         {{type.name}}

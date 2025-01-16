@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpService } from '../services/api/api.service';
+import { API_CONFIG } from '../services/api/api-config';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +14,17 @@ export class HeaderComponent {
   isDarkTheme: boolean = false;
   searchQuery: any;
   showDropdown: boolean = true;
-
-
+  movies: any;
 
  constructor(
-  private router : Router
+  private router : Router,
+  private http : HttpService
  ){}
+
+ ngOnInit(){
+  // this.onSearch(this.searchQuery)
+
+ }
 
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme; // Toggle the theme
@@ -71,7 +79,22 @@ selectTab(tabName: string) {
   this.selectedTab = tabName;
 }
 
-  onSearch() { }
+  // onSearch(query:string) {
+  //   console.log('Search Query in the box:', query)
+  //     this.http.getSearchMovies(`API_CONFIG.BASE_URL ,${query}`).subscribe((response:any) => {
+  //       this.
+  //     })
+  //  }
+  onSearch(searchQuery:any){
+    console.log('Search Query in the box:', searchQuery);
+    this.http.getSearchMovies('query',).subscribe((response:any)=>{
+      this.movies = response.results;
+      console.log('Searched Movies', this.movies);
+    },error =>{
+      console.log('Error Searching Movies', error);
+    });
+
+  }
 
   navigateToHome(){
     this.router.navigate([''])

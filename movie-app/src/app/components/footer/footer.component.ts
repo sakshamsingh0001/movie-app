@@ -15,13 +15,19 @@ export class FooterComponent {
   constructor(
     private fb: FormBuilder,
     private http: HttpService
-  ) {
+  ) {}
+
+  ngOnInit(){
     this.emailForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       message: ['', Validators.required],
     });
   }
+
+  // emailForm(){
+    
+  // }
 
   emailPayload(form:any){
      let payload = {

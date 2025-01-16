@@ -8,13 +8,13 @@ import { API_CONFIG } from './api-config';
 })
 export class HttpService {
 
-  private SEARCH_URL = `${API_CONFIG.BASE_URL}/search/movie?api_key=${API_CONFIG.API_KEY}`;
+  private SEARCH_URL = `${API_CONFIG.search_url}/search/movie?api_key=${API_CONFIG.API_KEY}`;
 
   constructor(
     private http: HttpClient) {}
 
   // Search movies by query
-  searchMovies(query: string): Observable<any> {
+  getSearchMovies(query: string): Observable<any> {
     const url = `${this.SEARCH_URL}&query=${encodeURIComponent(query)}`;
     return this.http.get<any>(url);
   }
