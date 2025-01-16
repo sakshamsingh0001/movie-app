@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpService } from '../services/api/api.service'; 
 
 @Component({
   selector: 'app-footer',
@@ -8,27 +9,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FooterComponent {
 
-showModal = false;
-emailForm!: FormGroup;
+  showModal = false;
+  emailForm!: FormGroup;
 
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpService
+  ) {
+    this.emailForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', Validators.required],
+    });
+  }
 
-constructor(private fb: FormBuilder) {
-  this.emailForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    message: ['', Validators.required],
-  });
-}
+  emailPayload(form:any){
+     let payload = {
+      'name': form.name,
+      'email': form.email,
+      'message': form.message,
+     }
+     return payload
+  }
 
-submitEmail() {
-throw new Error('Method not implemented.');
-}
-closeModal() {
-  this.showModal = false;
-}
+  saveEmailForm(){
+     let payload = this.emailPayload(this.emailForm.value);
+     console.log('Email Form:-', payload);
+     this.http.postForm('email', payload).subscribe((response:any) =>{
+     },(error: any) => {
+      console.error('SEE API SERVICES FILE', error)
+     });
+  }
 
-
-openEmailModal(){
-
-}
+  submitEmail() { }
+  closeModal() {
+    this.showModal = false;
+  }
 
 }

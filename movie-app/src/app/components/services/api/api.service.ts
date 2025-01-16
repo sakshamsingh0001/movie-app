@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_CONFIG } from './api-config';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class HttpService {
 
   private SEARCH_URL = `${API_CONFIG.BASE_URL}/search/movie?api_key=${API_CONFIG.API_KEY}`;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient) {}
 
   // Search movies by query
   searchMovies(query: string): Observable<any> {
@@ -23,6 +24,16 @@ export class ApiService {
     // Log the URL before making the request
     console.log('API Request URL:', url);
     return this.http.get<any>(url);
+  }
+
+  postForm(url: any, obj:any, params:any = null){
+    const convtParams = this.configureParams(params)
+    return this.http.post(`${API_CONFIG.BASE_URL}`, obj)
+
+  }
+
+  configureParams(params:any){
+
   }
 
   // Helper method to construct the URL for popular movies with pagination

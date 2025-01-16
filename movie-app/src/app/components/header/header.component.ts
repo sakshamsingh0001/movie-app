@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,12 @@ export class HeaderComponent {
   isDarkTheme: boolean = false;
   searchQuery: any;
   showDropdown: boolean = true;
+
+
+
+ constructor(
+  private router : Router
+ ){}
 
   toggleTheme() {
     this.isDarkTheme = !this.isDarkTheme; // Toggle the theme
@@ -45,7 +52,11 @@ export class HeaderComponent {
 // ];
 
 types = [
-  { name: 'HOME', dropdown: null },
+  { name: 'HOME', dropdown: null,
+     click:()=> {
+      this.navigateToHome()
+     }
+   },
   { name: 'MOVIES', dropdown: null },
   { name: 'GENRE', dropdown: ['Action', 'Comedy', 'Drama'] },
   { name: 'YEAR', dropdown: ['2023', '2022', '2021'] },
@@ -61,5 +72,11 @@ selectTab(tabName: string) {
 }
 
   onSearch() { }
+
+  navigateToHome(){
+    this.router.navigate([''])
+    window.location.reload()
+    // console.log('Home Clicked')
+  }
 
 }

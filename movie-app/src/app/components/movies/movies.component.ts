@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiService } from 'src/app/components/services/api/api.service';
+import { HttpService } from 'src/app/components/services/api/api.service';
 import { API_CONFIG } from '../services/api/api-config';
 
 @Component({
@@ -107,7 +107,7 @@ export class MoviesComponent {
   ]
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private httpService: HttpService) { }
 
   ngOnInit() {
     const page = 1; // You can make this dynamic based on user interaction or current page
@@ -142,7 +142,7 @@ export class MoviesComponent {
       return;
     }
 
-    this.apiService.getMovies(url).subscribe(
+    this.httpService.getMovies(url).subscribe(
       (data) => {
         console.log('API Response:', data); // Log the entire response for inspection
 
