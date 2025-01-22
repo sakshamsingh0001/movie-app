@@ -223,3 +223,16 @@
     font-size: 18px;
     color: #ffd700; 
   }
+
+
+  /* img {
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  img[loading="lazy"] {
+    opacity: 1;
+  }
+   */

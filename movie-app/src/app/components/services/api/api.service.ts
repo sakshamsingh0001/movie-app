@@ -11,7 +11,7 @@ export class HttpService {
   private SEARCH_URL = `${API_CONFIG.search_url}/search/movie?api_key=${API_CONFIG.API_KEY}`;
 
   constructor(
-    private http: HttpClient) {}
+    private http: HttpClient) { }
 
   // Search movies by query
   getSearchMovies(query: string): Observable<any> {
@@ -26,13 +26,13 @@ export class HttpService {
     return this.http.get<any>(url);
   }
 
-  postForm(url: any, obj:any, params:any = null){
+  postForm(url: any, obj: any, params: any = null) {
     const convtParams = this.configureParams(params)
     return this.http.post(`${API_CONFIG.BASE_URL}`, obj)
 
   }
 
-  configureParams(params:any){
+  configureParams(params: any) {
 
   }
 

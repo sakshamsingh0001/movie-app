@@ -1,7 +1,11 @@
+
+
 <div class="bars-container">
     <input type="checkbox" id="bars-toggler" />
     <label class="bars" for="bars-toggler"><i class="ri-menu-line"></i>Genres</label>
 
+
+    <!-- <img src="assets/images/loading.jpg" alt="Example Image" loading="lazy" /> -->
     <!-- Genre tags -->
     <!-- <div id="tags">
         <div *ngFor="let genre of genres" class="tag" [class.selected]="selectedGenre.includes(genre.id)"
@@ -38,9 +42,9 @@
     </a>
 
     <!-- Show loading while fetching data -->
-    <div *ngIf="isLoading" class="overlay-content">
+    <!-- <div *ngIf="isLoading" class="overlay-content">
         Loading...
-    </div>
+    </div> -->
 
     <!-- Display the selected movie details when overlay is visible -->
     <div *ngIf="!isLoading && selectedMovie" class="overlay-content">
@@ -53,7 +57,7 @@
     </div>
 
 
-    
+
 
     <!-- Left Arrow -->
     <!-- <a href="javascript:void(0)" class="arrow left-arrow" id="left-arrow" (click)="prevPage()">&#8656;</a> -->
@@ -78,6 +82,11 @@
         </div>
     </div>
 </main>
+
+
+<div class="search-movie-list">
+
+</div>
 
 <!-- Pagination -->
 <div class="pagination">

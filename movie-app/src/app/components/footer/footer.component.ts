@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from '../services/api/api.service'; 
+import { HttpService } from '../services/email-api/email.service';
 
 @Component({
   selector: 'app-footer',
@@ -15,9 +15,9 @@ export class FooterComponent {
   constructor(
     private fb: FormBuilder,
     private http: HttpService
-  ) {}
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.emailForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -25,31 +25,28 @@ export class FooterComponent {
     });
   }
 
-  // emailForm(){
-    
-  // }
 
-  emailPayload(form:any){
-     let payload = {
-      'name': form.name,
-      'email': form.email,
+  emailPayload(form: any) {
+    let payload = {
+      'recipient': form.email,
+      'subject': form.name,
       'message': form.message,
-     }
-     return payload
+    }
+    return payload
   }
 
-  saveEmailForm(){
-     let payload = this.emailPayload(this.emailForm.value);
-     console.log('Email Form:-', payload);
-     this.http.postForm('email', payload).subscribe((response:any) =>{
-     },(error: any) => {
+  saveEmailForm() {
+    let payload = this.emailPayload(this.emailForm.value);
+    console.log('Email Form:-', payload);
+    this.http.postForm(payload).subscribe((response: any) => {
+      console.log('Email Sent Successfully')
+    }, (error: any) => {
       console.error('SEE API SERVICES FILE', error)
-     });
+    });
   }
 
   submitEmail() { }
   closeModal() {
     this.showModal = false;
   }
-
 }
