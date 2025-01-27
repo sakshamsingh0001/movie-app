@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../services/email-api/email.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-footer',
@@ -14,7 +15,8 @@ export class FooterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpService
+    private http: HttpService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -40,12 +42,24 @@ export class FooterComponent {
     console.log('Email Form:-', payload);
     this.http.postForm(payload).subscribe((response: any) => {
       console.log('Email Sent Successfully')
+      this.submitEmail()
     }, (error: any) => {
       console.error('SEE API SERVICES FILE', error)
     });
   }
 
-  submitEmail() { }
+  // submitEmail() {
+  //   console.log('Submit Email Function Called Succesfully')
+  //    this.toastr.success('Email Sent Successfully')
+  //  }
+
+  submitEmail() {
+    console.log('Submit Email Function Called Successfully');
+    this.toastr.error('Email Sent Successfully', 'Success')
+      .onShown.subscribe(() => {
+        console.log('Toastr notification is displayed!');
+      });
+  }
   closeModal() {
     this.showModal = false;
   }

@@ -7,6 +7,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { MoviesComponent } from './components/movies/movies.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -21,7 +24,13 @@ import { MoviesComponent } from './components/movies/movies.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,  // Add this to enable animations
+    ToastrModule.forRoot({
+      timeOut: 3000,      // Duration of toast display
+      positionClass: 'toast-top-right',  // Position of the toast
+      preventDuplicates: true           // Prevent duplicate toasts
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
