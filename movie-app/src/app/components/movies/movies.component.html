@@ -1,5 +1,3 @@
-
-
 <div class="bars-container">
     <input type="checkbox" id="bars-toggler" />
     <label class="bars" for="bars-toggler"><i class="ri-menu-line"></i>Genres</label>
@@ -47,15 +45,35 @@
     </div> -->
 
     <!-- Display the selected movie details when overlay is visible -->
-    <div *ngIf="!isLoading && selectedMovie" class="overlay-content">
+    <!-- <div *ngIf="!isLoading && selectedMovie" class="overlay-content">
         <h3>{{ selectedMovie.original_title }}</h3>
         <img [src]="'https://image.tmdb.org/t/p/w500' + selectedMovie.poster_path"
             alt="{{ selectedMovie.original_title }}" class="overlay-poster">
         <p>{{ selectedMovie.overview }}</p>
         <span>Release Date: {{ selectedMovie.release_date | date }}</span>
         <span>Rating: {{ selectedMovie.vote_average }}</span>
-    </div>
+    </div> -->
 
+    <!-- Display the selected movie details when overlay is visible -->
+    <!-- Movie Overlay -->
+    <div *ngIf="!isLoading && selectedMovie" class="overlay-container">
+        <div class="overlay-content">
+            <!-- Close Button -->
+            <button class="close-btn" (click)="closeOverlay()">x</button>
+
+            <!-- Movie Poster -->
+            <img [src]="'https://image.tmdb.org/t/p/w500' + selectedMovie.poster_path"
+                alt="{{ selectedMovie.original_title }}" class="overlay-poster">
+
+            <!-- Movie Details -->
+            <div class="overlay-details">
+                <h3>{{ selectedMovie.original_title }}</h3>
+                <p>{{ selectedMovie.overview }}</p>
+                <span>Release Date: {{ selectedMovie.release_date | date }}</span>
+                <span>Rating: {{ selectedMovie.vote_average }}</span>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -82,7 +100,6 @@
         </div>
     </div>
 </main>
-
 
 <div class="search-movie-list">
 
