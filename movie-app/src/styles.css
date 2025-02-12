@@ -808,3 +808,5 @@ main,
 /* Adding For the displaying of movieds */
 
 /* General styling for the movie container */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

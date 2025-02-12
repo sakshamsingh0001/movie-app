@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../services/api/api.service';
 import { API_CONFIG } from '../services/api/api-config';
 import { environment } from 'src/environment/environment';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -10,20 +11,30 @@ import { environment } from 'src/environment/environment';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+ 
 
   isDarkTheme: boolean = false;
   searchQuery: any;
   showDropdown: boolean = true;
   movies: any;
+  selectedTab: string | null = null;
 
   constructor(
     private router: Router,
-    private http: HttpService
+    private http: HttpService,
+    public dialog: MatDialog
   ) { }
+
+  @ViewChild('searchModal') searchModal!: TemplateRef<any>;
+
 
   ngOnInit() {
     // this.onSearch(this.searchQuery)
 
+  }
+
+  closeModal(): void {
+    this.dialog.closeAll();
   }
 
   toggleTheme() {
@@ -74,7 +85,7 @@ export class HeaderComponent {
     { name: 'TV SERIES', dropdown: null }
   ];
 
-  selectedTab: string | null = null;
+
 
   selectTab(tabName: string) {
     this.selectedTab = tabName;
@@ -88,14 +99,28 @@ export class HeaderComponent {
   //  }
   onSearch(searchQuery: any) {
     console.log('Search Query in the box:', searchQuery);
-    this.http.getSearchMovies('query',).subscribe((response: any) => {
+    this.http.getSearchMovies(searchQuery).subscribe((response: any) => {
       this.movies = response.results;
       console.log('Searched Movies', this.movies);
+      if (this.searchQuery.trim() !== '') {
+        this.dialog.open(this.searchModal, {
+          width: '1400px'
+        });
+      }
     }, error => {
       console.log('Error Searching Movies', error);
     });
 
   }
+
+  // onclick(): void {
+  //   console.log('On Click Search Is Working ')
+  //   if (this.searchQuery.trim() !== '') {
+  //     this.dialog.open(this.searchModal, {
+  //       width: '400px'
+  //     });
+  //   }
+  // }
 
   navigateToHome() {
     this.router.navigate([''])

@@ -9,6 +9,10 @@ import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { MoviesComponent } from './components/movies/movies.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -26,11 +30,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,  // Add this to enable animations
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     ToastrModule.forRoot({
       timeOut: 3000,      // Duration of toast display
       positionClass: 'toast-top-right',  // Position of the toast
       preventDuplicates: true           // Prevent duplicate toasts
     })
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

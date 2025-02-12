@@ -21,9 +21,25 @@
 
   <!-- Search bar -->
   <header>
-    <form id="form" class="form" (ngSubmit)="onSearch(searchQuery)">
+    <!-- <form id="form" class="form" (ngSubmit)="onSearch(searchQuery)">
       <img src="assets/images/search-icon.svg" alt="search-icon" id="search-btn" />
       <input type="text" placeholder="Search" id="search" class="search" [(ngModel)]="searchQuery" name="search" />
+    </form> -->
+    <form id="form" class="form" (ngSubmit)="onSearch(searchQuery)">
+      <img
+        src="assets/images/search-icon.svg"
+        alt="search-icon"
+        id="search-btn"
+        style="cursor: pointer;"
+      />
+      <input
+        type="text"
+        placeholder="Search"
+        id="search"
+        class="search"
+        [(ngModel)]="searchQuery"
+        name="search"
+      />
     </form>
     <!-- <form (ngSubmit)="onSearch(searchQuery)">
       <input type="text" [(ngModel)]="searchQuery" name="query" placeholder="Search movies" />
@@ -54,3 +70,66 @@
     
   </header>
 </section>
+
+
+<!-- Modal for the search box -->
+
+
+<!-- Search Modal (Hidden Initially) -->
+<!-- <ng-template #searchModal>
+  <h2 mat-dialog-title>Search Results</h2>
+  <mat-dialog-content>
+    <p>Results for: <strong>{{ searchQuery }}</strong></p>
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movies.poster_path"
+    alt="{{ movies.original_title }}" class="overlay-poster">
+    <h3>{{ movies.original_title }}</h3>
+    <p>{{movies.overview}}</p>
+    <span>Release Date: {{ movies.release_date | date }}</span>
+    <span>Rating: {{ movies.vote_average }}</span>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="closeModal()">Close</button>
+  </mat-dialog-actions>
+</ng-template> -->
+
+<ng-template #searchModal>
+  <h2 mat-dialog-title>Search Results: </h2>
+  <mat-dialog-content>
+    <p>Results for: <strong>{{ searchQuery }}</strong></p>
+
+    <main id="main">
+      <div class="movies-grid" *ngIf="movies.length > 0; else noResults">
+        <div *ngFor="let movie of movies" class="movie-card">
+          <div class="movie-img-container">
+            <img
+              [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path"
+              alt="{{ movie.title }}"
+              class="movie-search-poster"
+            />
+            <div class="rating-overlay">
+              ⭐ {{ movie.vote_average | number: '1.1-1' }}
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.overview | slice:0:100 }}...</p>
+            <span>📅 {{ movie.release_date | date }}</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- No Results Message -->
+    <ng-template #noResults>
+      <p class="no-results">No movies found for "{{ searchQuery }}".</p>
+    </ng-template>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="closeModal()">Close</button>
+  </mat-dialog-actions>
+</ng-template>
+
+
+
+
