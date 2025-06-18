@@ -1,4 +1,4 @@
-import { environment } from "src/environment/environment";
+import { environment } from 'src/environment/environment'
 
 export const API_CONFIG = {
     BASE_URL: 'https://api.themoviedb.org/3/movie/popular',
